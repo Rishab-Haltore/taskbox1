@@ -1,0 +1,411 @@
+<style>
+  @media only screen and (max-width: 600px) {
+    .m-width{
+    width: auto !important;
+  }
+  .navbar-padding{
+    padding: 0.45rem 1rem !important;
+  }
+  }
+  
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-padding shadow-sm fixed-top">
+  <a class="navbar-brand m-width mr-0" href="#"><img src="assets/logo1.png" alt="hello" class="w-75"></a>
+
+  <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse mt-4" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item icon-1 dropdown font-weight-bold">
+        <a class="nav-link dropdown-toggle  text-black-50 mt-2" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" area-expanded="false">More</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="prev()">Sign Out</a>
+          <a class="dropdown-item" (click)="sso()">SSO Integration</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown mr-5">
+        <a class="nav-link dropdown-toggle font-weight-bold" style="font-size: 2rem; margin-bottom: 1rem;" href="#"
+          id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...
+
+        </a>
+
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="text-center" style="margin-top:10rem;">
+  <h2 class="font-weight-light text-uppercase" style="margin-top:10rem;">hello</h2>
+</div>
+<form [formGroup]="aes">
+  <div class="full-page">
+    <div class="container-fluid" style="text-align: center;">
+      <div class="row" style="margin-top:7%;">
+        <div class=" col-lg-3 col-md-3 shadow border bg-light" style="border-radius:10px; height: 10%;">
+          <mat-form-field>
+            <mat-label>Enter string to be encrypted</mat-label>
+            <textarea matInput id="test" rows="15" cols="40" [(ngModel)]="test" formControlName="aese" #textareaencrypt
+              [value]="post?.data"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-2 col-md-2 text-center">
+
+          <button type="button" name="button" (click)="encrypt(textareaencrypt.value)"
+            class="btn btn-outline-success ml-3 mr-3 my-4">Encrypt</button><br>
+          <button type="button" name="button" (click)="decrpyt(textareaName.value)"
+            class="btn btn-outline-success ml-3 mr-3 my-4">Decrypt</button><br>
+          <button type="button" name="button" (click)="cleardec()"
+            class="btn btn-outline-warning my-4 ml-3 mr-3 text-black-50 font-weight-bold px-4 ">Clear</button><br>
+       
+
+        </div>
+
+        <div class="col-lg-3 col-md-3 shadow border bg-light" style="border-radius:10px; height: 10%;">
+          <mat-form-field>
+            <mat-label>Encrypted string:</mat-label>
+            <textarea matInput rows="15" #textareaName [(ngModel)]="testdec" formControlName="aesd" cols="40"
+              [value]="enc?.data"></textarea>
+          </mat-form-field>
+        </div>
+
+   
+
+
+
+
+        <div class=" col-lg-3 col-md-3 mt-4 ml-auto">
+          <div class="card-header card-radius-head card-bg pr-3 py-0" id="show" style="color: #a3acb9;">
+            <p style="display: inline-block; color: #1ea672;" id="action">CODE SNIPPET</p>
+           
+            <div style="display: inline; margin-left: 10%;" align="right">
+      
+              </div> <button type="button" class="btn dropdown-toggle" style="color: #a3acb9;"
+              data-toggle="dropdown">
+              lang<i class="fas fa-sort ml-1"></i>
+            </button><a style="cursor: pointer;" class="copy ml-auto p-0" (click)="copy(user , user1 , user2 , user3)"><i
+                class="fas fa-clipboard thin-border pl-2 mr-0  mt-3"></i></a><label *ngIf="msgHideAndShow" style="float: right;">{{textMessage}}</label>
+            <div class="dropdown-menu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#python" class="nav-link" data-toggle="tab">Python</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#java" class="nav-link" data-toggle="tab">Java</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#php" class="nav-link" data-toggle="tab">Php</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#ruby" class="nav-link" data-toggle="tab">Ruby</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#node" class="nav-link" data-toggle="tab">Node</a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="card-body card-radius-body px-4 py-4" style="background-color: #4f566b;">
+            <div class="lead">
+              <div class="tab-content m-0 text-success">
+                <div class="tab-pane show" id="python">
+               
+                  <textarea rows="35"  cols="40" class="mt-0 ml-0" #user contenteditable>
+                    import base64
+                    import hashlib
+                    from Crypto.Cipher import AES
+                    from Crypto import Random
+                    BLOCK_SIZE = 16
+                    pad = lambda s: s + (BLOCK_SIZE - 
+                    len(s) % BLOCK_SIZE) *
+                    chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)
+                    unpad = lambda s: s[:-ord(s[len(s) - 1:])]
+                    password = input("Enter encryption 
+                    password: ")
+                    def encrypt(raw, password):
+                        private_key = hashlib.sha256
+                        (password.encode("utf-8")).digest()
+                        raw = pad(raw)
+                        iv = Random.new().read(AES.block_size)
+                        cipher = AES.new(private_key, 
+                        AES.MODE_CBC, iv)
+                        return base64.b64encode(iv + 
+                        cipher.encrypt(raw))
+                    def decrypt(enc, password):
+                        private_key = hashlib.sha256
+                        (password.encode("utf-8")).digest()
+                        enc = base64.b64decode(enc)
+                        iv = enc[:16]
+                        cipher = AES.new(private_key, 
+                        AES.MODE_CBC, iv)
+                        return unpad(cipher.decrypt(enc[16:]))
+                    encrypted = encrypt("This is a secret
+                     message"
+                    , password)
+                    print(encrypted)
+                    decrypted = decrypt(encrypted, password)
+                    print(bytes.decode(decrypted))
+                  </texarea>
+                </div>
+                <div class="tab-pane fade" id="java">
+          
+                  <textarea class="mt-3 ml-3"  rows="48" cols="40" #user4 contenteditable>
+                    public class Encryption {
+                      public String encrypt(String word)
+                       throws Exception {
+                        byte[] ivBytes;
+                        String password="Hello"; 
+                        SecureRandom random = new 
+                        SecureRandom();
+                        byte bytes[] = new byte[20];
+                        random.nextBytes(bytes);
+                        byte[] saltBytes = bytes;
+                        SecretKeyFactory factory = 
+                        SecretKeyFactory.getInstance
+                        ("PBKDF2WithHmacSHA1");
+                        PBEKeySpec spec = new PBEKeySpec
+                        (password.toCharArray(),
+                        saltBytes,65556,256);
+                        SecretKey secretKey = 
+                        factory.generateSecret(spec);
+                        SecretKeySpec secret = 
+                        new SecretKeySpec
+                        (secretKey.getEncoded(), "AES");
+                        Cipher cipher = Cipher.
+                        getInstance
+                        ("AES/CBC/PKCS5Padding");
+                        cipher.init(Cipher.ENCRYPT_MODE,
+                        secret);
+                        AlgorithmParameters params =
+                        cipher.getParameters();
+                        ivBytes = params.getParameterSpec
+                        (IvParameterSpec.class).getIV();
+                        byte[] encryptedTextBytes =
+                        cipher.doFinal(word.getBytes
+                        ("UTF-8"));
+                        byte[] buffer = new byte
+                        [saltBytes.length + ivBytes.length
+                        + encryptedTextBytes.length];
+                        System.arraycopy(saltBytes, 0,
+                        buffer, 0, saltBytes.length);
+                        System.arraycopy(ivBytes, 0, buffer,
+                        saltBytes.length, ivBytes.length);
+                        System.arraycopy(encryptedTextBytes,
+                        0, buffer, saltBytes.length + 
+                        ivBytes.length, 
+                        encryptedTextBytes.length);
+                        return new Base64()
+                        .encodeToString(buffer);
+                        }
+                    } </textarea>
+                </div>
+                <div class="tab-pane fade" id="php">
+       
+                  <textarea class="mt-3 ml-3"  rows="26" cols="40" #user1 contenteditable>
+                    <?php
+                    $plaintext = 'My secret message 1234';
+                    $password = '3sc3RLrpd17';
+                    $method = 'aes-256-cbc';
+                    $key = substr(hash('sha256', $password,
+                     true), 0, 32);
+                    echo "Password:" . $password . "\n";
+                    $iv = chr(0x0) . chr(0x0) . chr(0x0) .
+                     chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) .
+                      chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0)
+                       . chr(0x0) . chr(0x0) . chr(0x0) .
+                        chr(0x0) . chr(0x0);<br>
+                    $encrypted = base64_encode
+                    (openssl_encrypt($plaintext, $method,
+                     $key,
+                     OPENSSL_RAW_DATA, $iv));
+                    $decrypted = openssl_decrypt
+                    (base64_decode($encrypted), $method,
+                     $key, OPENSSL_RAW_DATA, $iv);
+                    echo 'plaintext=' . $plaintext .
+                     "\n";
+                    echo 'cipher=' . $method . "\n";
+                    echo 'encrypted to: ' . $encrypted . "\n";
+                    echo 'decrypted to: ' . $decrypted .
+                     "\n\n";>
+                  </textarea>
+                </div>
+                <div class="tab-pane fade" id="ruby">
+       
+                  <textarea rows="20" cols="35"  class="mt-3 ml-3" #user2 contenteditable>
+                    require "openssl"
+                    require "digest"
+                    def aes256_encrypt(key, data)
+                      key = Digest::SHA256.digest(key)
+                      if(key.kind_of?(String) && 32 
+                      != key.bytesize)
+                      aes = OpenSSL::Cipher
+                      .new('AES-256-CBC')
+                      aes.encrypt
+                      aes.key = key
+                      aes.update(data) + aes.final
+                    end
+                    
+                    def aes256_decrypt(key, data)
+                      key = Digest::SHA256.digest(key) 
+                      if(key.kind_of?(String) && 32
+                      != key.bytesize)
+                      aes = OpenSSL::Cipher
+                      .new('AES-256-CBC')
+                      aes.decrypt
+                      aes.key = Digest::SHA256.digest(key)
+                      aes.update(data) + aes.final
+                    end
+                  </textarea>
+                </div>
+                <div class="tab-pane fade" id="node">
+     
+                  <textarea rows="42" cols="40" class="mt-3 ml-3" #user3 contenteditable> 	
+                    const crypto = require('crypto');
+                    const algorithm = 'aes-256-cbc';
+                    const key = crypto.randomBytes(32);
+                    const iv = crypto.randomBytes(16);
+                    
+                    function encrypt(text) {
+                       let cipher = crypto
+                       .createCipheriv('aes-256-cbc'
+                       , Buffer.from(key), iv);
+                       let encrypted = cipher.
+                       update(text);
+                       encrypted = Buffer.
+                       concat([encrypted,
+                       cipher.final()]);
+                       return { iv: iv.toString('hex'),
+                       encryptedData: encrypted
+                       .toString('hex') };
+                    }
+                    
+                    function decrypt(text) {
+                       let iv = Buffer.from(text.iv,
+                        'hex');
+                       let encryptedText = Buffer.
+                       from(text.encryptedData, 'hex');
+                       let decipher = crypto.
+                       createDecipheriv('aes-256-cbc',
+                       Buffer.from(key), iv);
+                       let decrypted = decipher.
+                       update(encryptedText);
+                       decrypted = Buffer.
+                       concat([decrypted,
+                       decipher.final()]);
+                       return decrypted.toString();
+                    }
+                    var hw = encrypt("Let's
+                    do this encrypt and decrypt.")
+                    console.log(hw)
+                    console.log('Your 
+                    decrypt string is : '+
+                    decrypt(hw))
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="col-lg-8 col-md-8" style="margin-top: 4rem;">
+
+
+          </div>
+
+
+           <div class="ml-auto">
+            <div class="card-header card-radius-head card-bg pr-3 py-0" style="color: #a3acb9;">
+              <p class="mr-auto" style="display: inline-block; color:#1ea672;">TITLE</p>
+              <button type="button" class="btn margin-button dropdown-toggle" style="color: #a3acb9;"
+                data-toggle="dropdown">
+                Python<i class="fas fa-sort ml-1"></i>
+              </button><i class="fas fa-clipboard thin-border pl-2 mt-3"></i>
+              <div class="dropdown-menu">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a href="#python" class="nav-link" data-toggle="tab">Python</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#java" class="nav-link" data-toggle="tab">Java</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#php" class="nav-link" data-toggle="tab">Php</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#ruby" class="nav-link" data-toggle="tab">Ruby</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#go" class="nav-link" data-toggle="tab">Go</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <div class="card-body card-radius-body px-4 py-4" style="background-color: #4f566b;color: #a3acb9;">
+              <div class="lead">
+                <div class="tab-content m-0">
+                  <div class="tab-pane show" id="python">
+                   
+                    <p class="mt-3 ml-3" style="color:#1ea672;"> def palindrome(string):<br />
+                      return string == string[::-1]<br />
+                      palindrome('python')</p>
+                  </div>
+                  <div class="tab-pane fade" id="java">
+                   
+                    <p class="mt-3 ml-3" style="color:#1ea672"> public static String formatSize(long v) <br />
+
+                      int z = (63 - Long.numberOfLeadingZeros(v)) / 10;<br>
+                      return String.format("%.1f %sB", (double)v / (1L << (z*10)), " KMGTPE" .charAt(z)); </p>
+                  </div>
+                  <div class="tab-pane fade" id="php">
+                
+                    <p class="mt-3 ml-3" style="color:#1ea672"> $email = $_POST['email'];<br>
+                      if(preg_match(([a-zA-Z0-9-])",$email)) <br>
+                      echo 'This is a valid email.';<br>
+                      else <br>
+                      echo 'This is an invalid email.';<br>
+                    </p>
+                  </div>
+                  <div class="tab-pane fade" id="ruby">
+                  
+                    <p class="mt-3 ml-3" style="color:#1ea672"> def sum_eq_n?(arr, n)<br>
+                      return true if arr.empty? && n == 0<br>
+                      arr.product(arr).reject |a,b| a == b .any? |a,b| a + b == n <br>
+                      end
+                    </p>
+                  </div>
+                  <div class="tab-pane fade" id="go">
+                   
+                    <p class="mt-3 ml-3" style="color:#1ea672"> func()
+                      resource.Lock()<br>
+                      defer resource.Unlock()<br>
+                      // Do stuff with resource<br>
+                      ()
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</form>
